@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             store,
-            localSearch: 'miele'
+            localSearch: ''
         }
     },
     methods: {

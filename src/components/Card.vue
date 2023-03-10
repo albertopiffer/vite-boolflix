@@ -9,7 +9,12 @@
         <img :src="thumbnail" alt="">
 
         <p ref="flagEmote"></p>
-        <p>{{ item.vote_average }}</p>
+        <!-- <p>{{ starsVoteCalc }}</p> -->
+        <div>
+            <font-awesome-icon v-for="el in starsVoteSolid()" icon="fa-solid fa-star" />
+            <font-awesome-icon v-for="el in starsVoteRegular()" icon="fa-regular fa-star" />
+        </div>
+        <!-- <p>{{ item.vote_average }}</p> -->
     </li>
 </template>
 
@@ -35,6 +40,9 @@ export default {
     computed: {
         thumbnail() {
             return 'https://image.tmdb.org/t/p/' + 'w185' + this.item.poster_path
+        },
+        starsVoteCalc() {
+            return Math.max(Math.ceil(this.item.vote_average - 5), 0)
         }
     },
     methods: {
@@ -46,6 +54,20 @@ export default {
             if (supportedLang.includes(this.item.original_language)) {
                 myParagraph.innerHTML = this.flags[this.item.original_language]
             }
+        },
+        starsVoteSolid() {
+            let starString = []
+            for (let i = 0; i < this.starsVoteCalc; i++) {
+                starString.push(1)
+            }
+            return starString
+        },
+        starsVoteRegular() {
+            let starString = []
+            for (let i = 0; i < 5 - this.starsVoteCalc; i++) {
+                starString.push(0)
+            }
+            return starString
         }
     }
 }
