@@ -6,6 +6,8 @@
         <p v-if="type == 'm'">{{ item.original_title }}</p>
         <p v-else>{{ item.original_name }}</p>
 
+        <img :src="thumbnail" alt="">
+
         <p ref="flagEmote"></p>
         <p>{{ item.vote_average }}</p>
     </li>
@@ -30,6 +32,11 @@ export default {
     mounted() {
         this.updateHtml()
     },
+    computed: {
+        thumbnail() {
+            return 'https://image.tmdb.org/t/p/' + 'w185' + this.item.poster_path
+        }
+    },
     methods: {
         updateHtml() {
             const supportedLang = ['it', 'en', 'de', 'fr', 'es']
@@ -48,6 +55,10 @@ export default {
 .card {
     flex-basis: calc(25% - 25px);
 
-    line-height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
 }
 </style>
