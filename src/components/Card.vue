@@ -15,6 +15,7 @@
             <font-awesome-icon v-for="el in starsVoteRegular()" icon="fa-regular fa-star" />
         </div>
         <!-- <p>{{ item.vote_average }}</p> -->
+        <p>{{ item.overview }}</p>
     </li>
 </template>
 
@@ -39,7 +40,7 @@ export default {
     },
     computed: {
         thumbnail() {
-            return 'https://image.tmdb.org/t/p/' + 'w185' + this.item.poster_path
+            return 'https://image.tmdb.org/t/p/' + 'w342' + this.item.poster_path
         },
         starsVoteCalc() {
             return Math.max(Math.ceil(this.item.vote_average - 5), 0)
@@ -53,6 +54,9 @@ export default {
 
             if (supportedLang.includes(this.item.original_language)) {
                 myParagraph.innerHTML = this.flags[this.item.original_language]
+            }
+            else {
+                myParagraph.innerHTML = this.item.original_language
             }
         },
         starsVoteSolid() {
@@ -75,12 +79,20 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    flex-basis: calc(25% - 25px);
+    flex-basis: calc((100% - 30px*3)/4);
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
+
+    border: 1px dotted black;
+
+    padding: 10px;
+
+    // height: 550px;
+    // max-height: 550px !important;
+    overflow: hidden;
 }
 </style>

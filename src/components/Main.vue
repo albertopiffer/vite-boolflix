@@ -46,7 +46,7 @@ export default {
         justify-content: flex-start;
         flex-wrap: wrap;
 
-        gap: 25px;
+        gap: 30px;
     }
 }
 </style>

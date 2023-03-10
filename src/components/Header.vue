@@ -39,5 +39,7 @@ export default {
     align-items: center;
 
     height: 100px;
+
+    font-family: sans-serif;
 }
 </style>
