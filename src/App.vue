@@ -32,19 +32,20 @@ export default {
         },
         moviesEndpoint() {
             return this.BASE_URI + '/search/movie'
+        },
+        tvShowEndpoint() {
+            return this.BASE_URI + '/search/tv'
         }
     },
     watch: {
         search(newVal, oldVal) {
-            // console.log(newVal,oldVal)
             this.fetchData()
         }
     },
     methods: {
         fetchData() {
-            // console.log('fetch data')
             this.fetchMovies()
-            // this.fetchTVs()
+            this.fetchTVshow()
         },
         fetchMovies() {
             axios.get(this.moviesEndpoint, {
@@ -54,13 +55,24 @@ export default {
                     language: 'it-IT'
                 }
             }).then(res => {
-                // console.log(res)
                 const { results } = res.data
-                // const results = res.data.results
                 this.store.movies = results
-                // console.log(this.store.movies)
             }).catch(() => {
                 this.store.movies = []
+            })
+        },
+        fetchTVshow() {
+            axios.get(this.tvShowEndpoint, {
+                params: {
+                    api_key: this.API_KEY,
+                    query: this.search,
+                    language: 'it-IT'
+                }
+            }).then(res => {
+                const { results } = res.data
+                this.store.tv = results
+            }).catch(() => {
+                this.store.tv = []
             })
         }
     }

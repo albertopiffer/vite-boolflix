@@ -1,7 +1,11 @@
 <template>
     <li class="card">
-        <h3>{{ item.title }}</h3>
-        <h4>{{ item.original_title }}</h4>
+        <h3 v-if="type == 'm'">{{ item.title }}</h3>
+        <h3 v-else>{{ item.name }}</h3>
+
+        <p v-if="type == 'm'">{{ item.original_title }}</p>
+        <p v-else>{{ item.original_name }}</p>
+
         <p ref="flagEmote"></p>
         <p>{{ item.vote_average }}</p>
     </li>
@@ -18,6 +22,10 @@ export default {
             type: Object,
             required: true
         },
+        type: {
+            type: String,
+            required: true
+        }
     },
     mounted() {
         this.updateHtml()

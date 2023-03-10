@@ -2,7 +2,8 @@
     <main>
         <div class="container">
             <ul>
-                <Card v-for="movie in movies" :key="movie.id" :item="movie" :flags="flags" />
+                <Card v-for="movie in movies" :key="movie.id" :item="movie" :flags="flags" :type="'m'" />
+                <Card v-for="tvShow in tvShows" :key="tvShow.id" :item="tvShow" :flags="flags" :type="'t'" />
             </ul>
         </div>
     </main>
@@ -31,10 +32,9 @@ export default {
         movies() {
             return this.store.movies
         },
-
-        //flag() {
-        //    return this.store.map(movie => movie.title)
-        //}
+        tvShows() {
+            return this.store.tv
+        },
     }
 }
 </script>
