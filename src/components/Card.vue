@@ -91,7 +91,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
 
-    border: 1px dotted black;
+    //border: 1px dotted black;
 
     height: 488px;
     width: 342px;
